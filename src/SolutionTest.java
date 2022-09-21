@@ -1,16 +1,6 @@
-import java.util.Arrays;
-
 public class SolutionTest {
 
-    public static void main(String[] args) {
-//        System.out.println(SquareDigit(2));
-//        System.out.println(persistence(999));
-//        System.out.println(kata(new int [] {1,2,3,4,3,2,1}));
-//        System.out.println(solution(100));
-        System.out.println(Arrays.toString(deleteNth(new Integer[]{20,37,20,21}, 1)));
-//        maxmin(1000);
 
-    }
 
 
     public static int SquareDigit(int n) {
