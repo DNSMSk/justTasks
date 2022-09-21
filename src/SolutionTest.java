@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SolutionTest {
@@ -8,10 +7,11 @@ public class SolutionTest {
 //        System.out.println(persistence(999));
 //        System.out.println(kata(new int [] {1,2,3,4,3,2,1}));
 //        System.out.println(solution(100));
-        System.out.println(deleteNth(new Integer[]{1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1}, 3));
+        System.out.println(Arrays.toString(deleteNth(new Integer[]{20,37,20,21}, 1)));
 //        maxmin(1000);
 
     }
+
 
     public static int SquareDigit(int n) {
         int res = 0;
@@ -77,64 +77,55 @@ public class SolutionTest {
         return ans;
     }
 
-    public static Integer[] deleteNth(Integer[] elements, int maxOccurrences) {
-        boolean isItDone = false;
-        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(elements));
-        ArrayList<Integer> id = new ArrayList<Integer>();
-        int n = 0;
-        int counter = 0;
-        int countodDel = 0;
-        while (!isItDone) {
-            counter = 0;
-            for (int i = n; i < elements.length; i++) {
-                if (elements[n].equals(elements[i])) {
-                    counter++;
-                    System.out.println(numbers);
-//                    System.out.println(Arrays.toString(elements));
-                    if (counter >= maxOccurrences) {
-                        id.add(i);
-//                        numbers.remove(i - countodDel);
-//                        countodDel++;
+    public static int[] deleteNth(Integer[] elements, int maxOccurrences) {
+        int countOfRepeats = 0;
+        int countOfDeletes = 0;
+        int countOfAllDeletes = 0;
+        for (int i = 0; i < elements.length - 1; i++) {
+            countOfAllDeletes+=countOfDeletes;
+            countOfDeletes=0;
+            countOfRepeats = 0;
+            for (int j = i + 1; j <= elements.length - 1-countOfAllDeletes; j++) {
+//                System.out.println(Arrays.toString(elements));
+                if (elements[i]==(elements[j])) {
+                    countOfRepeats++;
+                    if (countOfRepeats >= maxOccurrences) {
+                        countOfDeletes++;
+                    }
+                } else {
+                    elements[j - countOfDeletes] = elements[j];
 
-
-                    } /*else {
-                        numbers.add(elements[i]);
-                        System.out.println(numbers);
-                    }*/
                 }
-            }
-            System.out.println(id);
-            n++;
-            for (int i =0;i< id.size();i++){
-                numbers.remove((id.get(i)));
-            }
-            id.clear();
-            if (n == elements.length) {
 
-                isItDone = true;
             }
         }
-        System.out.println(id);
-        System.out.println(Arrays.toString(elements));
-        System.out.println(numbers);
-        return null;
+        int[] newar = new int[elements.length - countOfAllDeletes];
+        for (int i = 0; i < newar.length; i++) {
+            newar[i] = elements[i];
+        }
+//        System.out.println(Arrays.toString(newar));
+        return newar;
     }
 
-    public static int maxmin(int n){
+    public static int maxmin(int n) {
         double[] array = new double[n];
-        for(int i = 0; i<array.length;i++){
-            array[i]=Math.random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Math.random();
         }
         double min = array[0];
         double max = array[0];
-        for(int i = 0; i<array.length;i++){
-            if (max<array[i]){max=array[i];}
-            if (min>array[i]){min=array[i];}
-        System.out.println(array[i]);}
-        System.out.println("Max value is "+max);
-        System.out.println("Min value is "+min);
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+            if (min > array[i]) {
+                min = array[i];
+            }
+            System.out.println(array[i]);
+        }
+        System.out.println("Max value is " + max);
+        System.out.println("Min value is " + min);
         return 0;
-        double maxa = Arrays.stream(array).min();
     }
 }
 
