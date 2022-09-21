@@ -1,8 +1,5 @@
 public class SolutionTest {
 
-
-
-
     public static int SquareDigit(int n) {
         int res = 0;
         for (int i = 0; i < String.valueOf(n).length(); i++) {
