@@ -68,22 +68,25 @@ public class SolutionTest {
         int countOfRepeats = 0;
         int countOfDeletes = 0;
         int countOfAllDeletes = 0;
+        int[] newaar = new int[0];
         for (int i = 0; i < elements.length - 1; i++) {
-            countOfAllDeletes+=countOfDeletes;
-            countOfDeletes=0;
+            countOfAllDeletes += countOfDeletes;
+            countOfDeletes = 0;
             countOfRepeats = 0;
-            for (int j = i + 1; j <= elements.length - 1-countOfAllDeletes; j++) {
+            if (maxOccurrences == 0) {
+                return newaar;
+            } else {
+                for (int j = i + 1; j <= elements.length - 1 - countOfAllDeletes; j++) {
 //                System.out.println(Arrays.toString(elements));
-                if (elements[i]==(elements[j])) {
-                    countOfRepeats++;
-                    if (countOfRepeats >= maxOccurrences) {
-                        countOfDeletes++;
+                    if (elements[i] == (elements[j])) {
+                        countOfRepeats++;
+                        if (countOfRepeats >= maxOccurrences) {
+                            countOfDeletes++;
+                        }
+                    } else {
+                        elements[j - countOfDeletes] = elements[j];
                     }
-                } else {
-                    elements[j - countOfDeletes] = elements[j];
-
                 }
-
             }
         }
         int[] newar = new int[elements.length - countOfAllDeletes];
