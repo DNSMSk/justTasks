@@ -7,7 +7,7 @@ public class SolutionTest {
             res = Integer.parseInt(String.valueOf(res) + (j * j));
         }
         return (res);
-    }A
+    }
 
     public static int persistence(int n) {
         boolean is = true;
